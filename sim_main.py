@@ -12,8 +12,8 @@ import panda_sim as PandaSim
 from ggcnn_sim_help import GGCNNNet, Draw_Grasp, Grasp_Depth
 import image_t as T
 
-FINGER1 = 0.15
-FINGER2 = 0.15
+FINGER1 = 0.1
+FINGER2 = 0.1
 
 def run(Database_Path, Start_Index, Object_Num):
     """
@@ -27,8 +27,8 @@ def run(Database_Path, Start_Index, Object_Num):
     Panda = PandaSim.PandaSimAuto(p, [0, -0.6, 0]) # load the gripper arm
     Env = Env_Sim(p, Database_Path, Panda.PandaId) # load environment
     camera = Camera()
-    GG_CNN = GGCNNNet('/home/zf/ggcnn_self_sim/ggcnn_base/output/models/221204_2000_training_example/'
-                      'epoch_47_iou_0.75_statedict.pt', device="cuda")
+    GG_CNN = GGCNNNet('/home/zf/ggcnn_self_sim/ggcnn_base/output/models/230121_1510_training_example/'
+                      'epoch_44_iou_0.76_statedict.pt', device="cuda")
 
     successful_grasp = 0
     all_grasp = 0
@@ -46,7 +46,7 @@ def run(Database_Path, Start_Index, Object_Num):
         Camera_Depth = Env.Render_Depth_Image()
 
     # predict the grasp
-        row, col, angle, width_pixels = GG_CNN.Predict(Camera_Depth, input_size=320)
+        row, col, angle, width_pixels = GG_CNN.Predict(Camera_Depth, input_size=300)
         real_width = camera.ImagePixel2Line(width_pixels, Camera_Depth[row, col])
     # print(row)
         grasp_x, grasp_y, grasp_z = camera.Image2World([col, row], Camera_Depth[row, col])
@@ -96,7 +96,7 @@ def run(Database_Path, Start_Index, Object_Num):
 
 if __name__ == "__main__":
     Start_Index = 8
-    Object_Num = 5
+    Object_Num = 2
     Database_Path = '/home/zf/ggcnn_self_sim/objs'
     successful_grasp, all_grasp = run(Database_Path, Start_Index, Object_Num)
     print('\n==========================Successful rate of grasping: {}/{}={}'.format(successful_grasp, all_grasp,

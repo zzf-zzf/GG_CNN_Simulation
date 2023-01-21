@@ -87,7 +87,7 @@ def Draw_Grasp(image, grasps, mode='line'):
 
     return image
 
-def Input_Image(image, out_size=320):
+def Input_Image(image, out_size=300):
     """
     reshape the image, keep the center image
     :param image:

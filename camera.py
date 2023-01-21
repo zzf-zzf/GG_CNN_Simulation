@@ -55,8 +55,8 @@ class Camera:
         """
         Initialize the parameter of camera, calculate the inner parameter of camera
         """
-        self.fov = 60 #field of view(vetical)， should be optimized
-        self.height = 0.9 # height of camera
+        self.fov = 50 #field of view(vetical)， should be optimized
+        self.height = 0.5 # height of camera
         self.RealHigh = self.height * math.tan(Angle2Radians(self.fov/2)) #the real distance between the mid-point of image and edge
         self.RealWidth = Width_img * self.RealHigh / Height_img #the real width of image
 
