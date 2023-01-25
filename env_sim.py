@@ -11,12 +11,11 @@ import cv2
 import numpy as np
 import shutil #realize some function like file copying, moving, compressing and decompressing
 import sys
-import skimage.transform as skt # be used for image scaling and warping
 sys.path.append('/home/zf/ggcnn_self_sim')
 
-# image size, affect the grasp effect(like location of grasp), should be optimized
+# image size(depth image), affect the grasp effect(like location of grasp), should be optimized
 image_width = 640
-image_height = 480
+image_height = 480 #the size should equal to training dataset
 near_plane = 0.01
 far_plane = 5
 fov = 70 # height of camera

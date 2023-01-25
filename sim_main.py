@@ -26,7 +26,7 @@ def run(Database_Path, Start_Index, Object_Num):
     p.connect(p.GUI) # initialize the simulation environment
     Panda = PandaSim.PandaSimAuto(p, [0, -0.6, 0]) # load the gripper arm
     Env = Env_Sim(p, Database_Path, Panda.PandaId) # load environment
-    camera = Camera()
+    camera = Camera() #load camera
     GG_CNN = GGCNNNet('/home/zf/ggcnn_self_sim/ggcnn_base/output/models/230121_1510_training_example/'
                       'epoch_44_iou_0.76_statedict.pt', device="cuda")
 
@@ -34,7 +34,7 @@ def run(Database_Path, Start_Index, Object_Num):
     all_grasp = 0
     continue_fail_grasp = 0
 
-    # load objects
+    # load grasping objects
     Env.loadURDFObject(Start_Index, Object_Num)
 
     # give time to ready
@@ -96,7 +96,7 @@ def run(Database_Path, Start_Index, Object_Num):
 
 if __name__ == "__main__":
     Start_Index = 8
-    Object_Num = 2
+    Object_Num = 6
     Database_Path = '/home/zf/ggcnn_self_sim/objs'
     successful_grasp, all_grasp = run(Database_Path, Start_Index, Object_Num)
     print('\n==========================Successful rate of grasping: {}/{}={}'.format(successful_grasp, all_grasp,
