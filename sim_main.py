@@ -12,8 +12,8 @@ import panda_sim as PandaSim
 from ggcnn_sim_help import GGCNNNet, Draw_Grasp, Grasp_Depth
 import image_t as T
 
-FINGER1 = 0.1
-FINGER2 = 0.1
+FINGER1 = 0.15
+FINGER2 = 0.15
 
 def run(Database_Path, Start_Index, Object_Num):
     """
@@ -67,8 +67,8 @@ def run(Database_Path, Start_Index, Object_Num):
         print('+' * 100)
 
     # configuration of grasp (plotting)
-        Image_RGB = T.Depth2Gray_3((Camera_Depth))
-        Image_Grasp = Draw_Grasp(Image_RGB, [[row, col, angle, width_pixels]], mode='line')
+        Image_RGB = T.Depth2Gray_3((Camera_Depth)) #detpth image to RGB
+        Image_Grasp = Draw_Grasp(Image_RGB, [[row, col, angle, width_pixels]], mode='line') #get grasping description
         cv2.imshow('Grasping-Image', Image_Grasp)
         cv2.waitKey(300) # control the showing duration time of imshow
 
@@ -80,7 +80,7 @@ def run(Database_Path, Start_Index, Object_Num):
 
         all_grasp += 1
 
-        if Env.Eval_Grasp1(z_thresh=0.2):
+        if Env.Eval_Grasp2(y_threshold=0):
             successful_grasp += 1
             continue_fail_grasp = 0
             if Env.urdfs_num == 0:
@@ -96,7 +96,7 @@ def run(Database_Path, Start_Index, Object_Num):
 
 if __name__ == "__main__":
     Start_Index = 8
-    Object_Num = 6
+    Object_Num = 3
     Database_Path = '/home/zf/ggcnn_self_sim/objs'
     successful_grasp, all_grasp = run(Database_Path, Start_Index, Object_Num)
     print('\n==========================Successful rate of grasping: {}/{}={}'.format(successful_grasp, all_grasp,

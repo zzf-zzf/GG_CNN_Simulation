@@ -164,12 +164,26 @@ class Env_Sim(object):
         for i in range(self.urdfs_num):
             loc, ori = self.zzf.getBasePositionAndOrientation(self.urdfs_id[i])
             if loc[2] >= z_thresh:
+                print('======================Successful grasping======================')
                 return True
             print('======================This grasp is failed======================')
             return False
 
     # scene 2:judge whether the grasping object is put on the tray(can be a range of location)
-    #def Eval_Grasp2(self, ):
+    def Eval_Grasp2(self, y_threshold):
+        """
+
+        :param y_threshold:
+        :return:
+        """
+        for i in range(self.urdfs_num):
+            loc, ori = self.zzf.getBasePositionAndOrientation(self.urdfs_id[i])
+            if loc[1] <= y_threshold:
+                print('======================Successful grasping======================')
+                return True
+            print('======================This grasp is failed======================')
+            return False
+
 
 
     # should change to better

@@ -82,6 +82,8 @@ def Draw_Grasp(image, grasps, mode='line'):
                 cv2.line(image, (Col, Row), (int(Col + dx), int(Row - dy)), (255, 0, 0), 1)
             else:
                 cv2.line(image, (Col, Row), (int(Col - dx), int(Row + dy)), (255, 0, 0), 1)
+
+            cv2.circle(image, (Col, Row), 1, (color_b, color_g, color_r), -1)
         else:
             image[Row, Col] = [color_b, color_g, color_r]
 
