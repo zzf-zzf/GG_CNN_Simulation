@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-# image size pixels
+# image size(displaying)
 Height_img = 480
 Width_img = 640
 
@@ -17,19 +17,19 @@ def Euler2Roatation(theta):
     :param theta: [roll, pitch, yaw]
     :return:
     """
-    R_X = np.array([[1,                 0 ,                 0],
+    R_X = np.array([[1,                  0,                   0],
                     [0, math.cos(theta[0]), -math.sin(theta[0])],
                     [0, math.sin(theta[0]),  math.cos(theta[0])]
                   ])
 
     R_Y = np.array([[math.cos(theta[1]),  0, math.sin(theta[1])],
-                    [0,                   1, 0                 ],
+                    [0,                   1,                  0],
                     [-math.sin(theta[1]), 0, math.cos(theta[1])]
                     ])
 
     R_Z = np.array([[math.cos(theta[2]), -math.sin(theta[2]), 0],
                     [math.sin(theta[2]),  math.cos(theta[2]), 0],
-                    [0,                                    0, 1]
+                    [                 0,                   0, 1]
                     ])
     Rotation_Matrix = np.dot(R_Z, np.dot(R_Y, R_X))
     return Rotation_Matrix
@@ -55,7 +55,7 @@ class Camera:
         """
         Initialize the parameter of camera, calculate the inner parameter of camera
         """
-        self.fov = 50 #field of view(vetical)， should be optimized
+        self.fov = 70 #field of view(vetical)， should be optimized
         self.height = 0.5 # height of camera
         self.RealHigh = self.height * math.tan(Angle2Radians(self.fov/2)) #the real distance between the mid-point of image and edge
         self.RealWidth = Width_img * self.RealHigh / Height_img #the real width of image

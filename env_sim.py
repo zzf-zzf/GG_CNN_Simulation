@@ -130,7 +130,8 @@ class Env_Sim(object):
 
         for i in range(self.urdfs_num):
             pos_obj = 0.1
-            basePosition = [random.uniform(-1*pos_obj, pos_obj), random.uniform(-1*pos_obj, pos_obj), random.uniform(0.2, 1)]
+            basePosition = [random.uniform(-1*pos_obj, 1*pos_obj), random.uniform(-1*pos_obj, 1*pos_obj),
+                            random.uniform(0.2, 1)]
             baseEuler = [random.uniform(0, 2*math.pi), random.uniform(0, 2*math.pi), random.uniform(0, 2*math.pi)]
             baseOrientation = self.zzf.getQuaternionFromEuler(baseEuler)
 

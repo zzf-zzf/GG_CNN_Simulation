@@ -71,7 +71,7 @@ class PandaSim(object):
         :return:
         """
         Joint_Pose = self.zzf.calculateInverseKinematics(self.PandaId, PandaEndEffector, pos, orien, lower_limit,
-                                                         Up_Null, Joint_Range, R_P, maxNumIterations=20)
+                                                         Up_Null, Joint_Range, R_P, maxNumIterations=50)
         return Joint_Pose
 
     def Set_ArmPose(self, pos):
@@ -93,7 +93,7 @@ class PandaSim(object):
         """
         for i in range(PandaDofs):
             self.zzf.setJointMotorControl2(self.PandaId, i, self.zzf.POSITION_CONTROL, Joint_Pose[i],
-                                           force=1000, maxVelocity=maxVelocity)
+                                           force=10000, maxVelocity=maxVelocity)
 
     def Set_Gripper(self, Finger_Target):
         """
@@ -220,7 +220,7 @@ class PandaSimAuto(PandaSim):
         self.state_time = 0
         self.Current = 0
         self.States = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-        self.Dur_State = [0.15, 0.15, 0.3, 0.15, 0.3, 0.3, 1.0, 0.5, 0.2, 0.2, 1.0, 1.0]
+        self.Dur_State = [0.15, 0.15, 0.3, 0.15, 0.3, 0.3, 1.5, 0.5, 0.2, 0.2, 1.0, 1.0]
 
     def U_S(self):
         self.state_time += self.control_dt

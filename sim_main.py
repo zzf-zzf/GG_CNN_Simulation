@@ -80,7 +80,7 @@ def run(Database_Path, Start_Index, Object_Num):
 
         all_grasp += 1
 
-        if Env.Eval_Grasp2(y_threshold=0):
+        if Env.Eval_Grasp2(y_threshold=-0.5):
             successful_grasp += 1
             continue_fail_grasp = 0
             if Env.urdfs_num == 0:
@@ -95,7 +95,7 @@ def run(Database_Path, Start_Index, Object_Num):
         Panda.Set_ArmPose([0.5, -0.6, 0.2])
 
 if __name__ == "__main__":
-    Start_Index = 8
+    Start_Index = 10
     Object_Num = 3
     Database_Path = '/home/zf/ggcnn_self_sim/objs'
     successful_grasp, all_grasp = run(Database_Path, Start_Index, Object_Num)
