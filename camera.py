@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-# image size(displaying)
+# image size(displaying,training dataset)
 Height_img = 480
 Width_img = 640
 
@@ -55,8 +55,8 @@ class Camera:
         """
         Initialize the parameter of camera, calculate the inner parameter of camera
         """
-        self.fov = 70 #field of view(vetical)， should be optimized
-        self.height = 0.5 # height of camera
+        self.fov = 50 #field of view(vetical)， should be optimized
+        self.height = 0.5 # camera high
         self.RealHigh = self.height * math.tan(Angle2Radians(self.fov/2)) #the real distance between the mid-point of image and edge
         self.RealWidth = Width_img * self.RealHigh / Height_img #the real width of image
 
@@ -64,7 +64,8 @@ class Camera:
         self.f = (Height_img / 2) * self.height / self.RealHigh
 
         # inner parameter
-        self.InMatrix = np.array([[self.f, 0, Width_img/2-0.5], [0, self.f, Height_img/2-0.5], [0, 0, 1]], dtype=np.float)
+        self.InMatrix = np.array([[self.f, 0, Width_img/2], [0, self.f, Height_img/2],
+                                  [0, 0, 1]], dtype=np.float)
 
         # calculate the transfer matrix from world coordinate to camera coordinate  4*4
         RotMatrix = Euler2Roatation([math.pi, 0, 0])
