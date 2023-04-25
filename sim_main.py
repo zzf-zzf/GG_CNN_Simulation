@@ -5,7 +5,7 @@
 import pybullet as p
 import cv2
 import sys
-sys.path.append('/home/zf/ggcnn_self_sim') #add the location of self-module, this is a temporary path, the folloeing modules are come from this path
+sys.path.append('/home/ziefen_z/GGCNN_simulation') #add the location of self-module, this is a temporary path, the folloeing modules are come from this path
 from env_sim import Env_Sim
 from camera import Camera
 import panda_sim as PandaSim
@@ -27,7 +27,7 @@ def run(Database_Path, Start_Index, Object_Num):
     Panda = PandaSim.PandaSimAuto(p, [0, -0.6, 0]) # load the gripper arm
     Env = Env_Sim(p, Database_Path, Panda.PandaId) # load environment
     camera = Camera() #load camera
-    GG_CNN = GGCNNNet('/home/zf/ggcnn_self_sim/ggcnn_base/output/models/230121_1510_training_example/'
+    GG_CNN = GGCNNNet('/home/ziefen_z/GGCNN_simulation/ggcnn_base/output/models/230121_1510_training_example/'
                       'epoch_44_iou_0.76_statedict.pt', device="cuda")
 
     successful_grasp = 0
@@ -96,8 +96,8 @@ def run(Database_Path, Start_Index, Object_Num):
 
 if __name__ == "__main__":
     Start_Index = 10
-    Object_Num = 3
-    Database_Path = '/home/zf/ggcnn_self_sim/objs'
+    Object_Num = 10
+    Database_Path = '/home/ziefen_z/GGCNN_simulation/objs'
     successful_grasp, all_grasp = run(Database_Path, Start_Index, Object_Num)
     print('\n==========================Successful rate of grasping: {}/{}={}'.format(successful_grasp, all_grasp,
                                                                                      successful_grasp / all_grasp))

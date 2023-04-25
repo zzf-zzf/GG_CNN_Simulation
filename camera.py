@@ -65,7 +65,7 @@ class Camera:
 
         # inner parameter
         self.InMatrix = np.array([[self.f, 0, Width_img/2], [0, self.f, Height_img/2],
-                                  [0, 0, 1]], dtype=np.float)
+                                  [0, 0, 1]], dtype=np.float64) # change 04.17
 
         # calculate the transfer matrix from world coordinate to camera coordinate  4*4
         RotMatrix = Euler2Roatation([math.pi, 0, 0])
@@ -82,7 +82,7 @@ class Camera:
         :return:[x, y, z]
         """
         # print(loc)
-        locInImage = np.array([[loc[0]], [loc[1]], [1]], dtype=np.float)
+        locInImage = np.array([[loc[0]], [loc[1]], [1]], dtype=np.float64)
 
         Ret = np.matmul(np.linalg.inv(self.InMatrix), locInImage) * depth
         return list(Ret.reshape((3,)))

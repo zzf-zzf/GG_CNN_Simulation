@@ -115,7 +115,7 @@ class PandaSim(object):
         :return:
         """
         # update state
-        self.U_S()
+        self.u_s()
 
         pb.configureDebugVisualizer(pb.COV_ENABLE_SINGLE_STEP_RENDERING)
 
@@ -220,9 +220,9 @@ class PandaSimAuto(PandaSim):
         self.state_time = 0
         self.Current = 0
         self.States = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-        self.Dur_State = [0.15, 0.15, 0.3, 0.15, 0.3, 0.3, 1.5, 0.5, 0.2, 0.2, 1.0, 1.0]
+        self.Dur_State = [1, 0.15, 0.3, 0.3, 0.3, 1.5, 1.25, 0.5, 0.5, 0.5, 0.6, 0.6]
 
-    def U_S(self):
+    def u_s(self):
         self.state_time += self.control_dt
         if self.state_time > self.Dur_State[self.Current]:
             self.Current += 1

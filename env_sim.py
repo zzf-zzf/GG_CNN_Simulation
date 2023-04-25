@@ -61,7 +61,7 @@ class Env_Sim(object):
         self.zzf.resetDebugVisualizerCamera(cameraDistance=1.3, cameraYaw=38, cameraPitch=-22, cameraTargetPosition=[0, 0, 0]) # chenge of the camera's vision
         self.zzf.setAdditionalSearchPath(pybullet_data.getDataPath()) # add the path
         self.planeId = self.zzf.loadURDF("plane.urdf", [0, 0, 0]) #load the ground
-        self.trayId = self.zzf.loadURDF("/home/zf/bullet3-master/data/tray/tray.urdf", [0, -1.2, 0]) #load the tray
+        self.trayId = self.zzf.loadURDF("/home/ziefen_z/.local/lib/python3.8/site-packages/pybullet_data/tray/tray.urdf", [0, -1.2, 0]) #load the tray
         self.zzf.setGravity(0, 0, -9.8) #add gravity acceleration
         self.flags = self.zzf.URDF_ENABLE_CACHED_GRAPHICS_SHAPES #
         self.gripperId = gripperId #variable, select the gripper engine when run the main function
